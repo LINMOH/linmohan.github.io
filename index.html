@@ -3,69 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>林墨瀚的自我风采介绍</title>
+    <title>林墨瀚的个人风采展示</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
         }
+
         .container {
-            width: 80%;
-            margin: 0 auto;
+            width: 210mm;
+            height: 297mm;
+            margin: auto;
+            background-color: white;
             padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
-        h1 {
+
+        header {
             text-align: center;
-            color: #333;
+            padding: 10px;
         }
-        .section {
-            margin: 20px 0;
+
+        header h1 {
+            font-size: 36px;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        .photo {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #666;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        section {
+            margin-top: 160px;
+            padding: 0 20px;
+        }
+
+        section h2 {
+            font-size: 24px;
+            color: #444;
+            border-bottom: 2px solid #444;
+            margin-bottom: 10px;
+        }
+
+        section p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .skills {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .skills .box {
+            width: 48%;
             padding: 15px;
-            border-radius: 8px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #fafafa;
             position: relative;
             overflow: hidden;
         }
-        .section-title {
-            font-size: 1.5em;
-            color: #007BFF;
-            cursor: pointer;
-            transition: color 0.3s;
+
+        .skills .box h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
         }
-        .section-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            color: #333;
+
+        .skills .box ul {
+            list-style-type: square;
+            padding-left: 20px;
         }
-        .section:hover .section-content {
-            max-height: 1000px;
-            padding-top: 10px;
+
+        .skills .box ul li {
+            font-size: 16px;
+            margin-bottom: 5px;
         }
-        .section:hover .section-title {
-            color: #0056b3;
+
+        .skills .box p {
+            font-size: 16px;
+            color: #555;
+            display: none;
+        }
+
+        .skills .box:hover p {
+            display: block;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>林墨瀚的自我风采介绍</h1>
-        <div class="section">
-            <div class="section-title">个人简介</div>
-            <div class="section-content">
-                <p>我的名字是林墨瀚，是一名典型的INTJ类型，性格内向但目标明确，喜欢独立思考和规划未来。在学习方面，我特别热衷于英语，阅读了多本语法书籍，并每天通过听英语博客来提高听力与语言水平。同时，我对计算机技术有浓厚的兴趣，熟练掌握了Windows和Linux操作系统，能够使用Python进行编程，现阶段正在自学C++。</p>
+        <header>
+            <h1>林墨瀚的个人风采展示</h1>
+        </header>
+        
+        <div class="photo">
+            <img src="your-photo.jpg" alt="林墨瀚照片">
+        </div>
+
+        <section>
+            <h2>个人简介</h2>
+            <p>我是林墨瀚，一名内向型的INTJ人格类型者，喜欢独立思考和解决复杂问题。我的兴趣广泛，尤其热衷于英语和计算机编程。我阅读了多本语法书籍，每天听英语博客，并在Python和C++编程中不断探索。</p>
+        </section>
+
+        <div class="skills">
+            <div class="box">
+                <h3>个人技能</h3>
+                <ul>
+                    <li>熟练使用Windows、Linux系统</li>
+                    <li>掌握Python，学习C++</li>
+                    <li>日常英语听力与语法学习</li>
+                </ul>
+                <p>此外，我还计划通过不断学习和实践，进一步提升技能，关注技术领域的前沿动态。</p>
+            </div>
+            <div class="box">
+                <h3>未来理想</h3>
+                <p>我立志成为一名计算机领域的专家，未来希望能够加入EMC或IBM，为科技发展贡献力量。我的目标是不断学习新技术，并在行业中发挥积极作用。</p>
             </div>
         </div>
-        <div class="section">
-            <div class="section-title">未来理想</div>
-            <div class="section-content">
-                <p>我对技术领域充满了激情，未来希望能够加入EMC或IBM，成为一名优秀的技术专家。我计划继续提升我的编程技能，并深入了解计算机科学的前沿技术。我希望通过不断学习和实践，为技术领域做出贡献，并实现我的职业目标。</p>
-            </div>
-        </div>
-        <!-- 可以在这里添加更多栏目 -->
+
+        <footer>
+            <p>感谢阅读我的个人展示！</p>
+        </footer>
     </div>
 </body>
 </html>
