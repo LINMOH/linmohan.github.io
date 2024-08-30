@@ -14,7 +14,7 @@
 
         .container {
             width: 210mm;
-            height: 297mm;
+            height: 500mm;
             margin: auto;
             background-color: white;
             padding: 20px;
@@ -26,6 +26,7 @@
             text-align: center;
             padding: 10px;
             border-bottom: 2px solid #ddd;
+            position: relative;
         }
 
         header h1 {
@@ -35,8 +36,49 @@
             letter-spacing: 2px;
         }
 
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            margin-top: 20px; /* 上边距 */
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 18px;
+        }
+
         section {
-            margin-top: 40px; /* 增加标题与正文部分的间距 */
+            margin-top: 20px;
             padding: 0 20px;
         }
 
@@ -44,7 +86,7 @@
             font-size: 24px;
             color: #444;
             border-bottom: 2px solid #444;
-            margin-bottom: 20px; /* 增加标题底部的间距 */
+            margin-bottom: 20px;
         }
 
         section p {
@@ -56,7 +98,7 @@
         .skills {
             display: flex;
             justify-content: space-between;
-            margin-top: 30px; /* 增加技能部分的上边距 */
+            margin-top: 30px;
         }
 
         .skills .box {
@@ -101,33 +143,6 @@
             display: block;
         }
 
-        .gallery {
-            margin-top: 30px;
-            padding: 0 20px;
-        }
-
-        .gallery h2 {
-            font-size: 24px;
-            color: #444;
-            border-bottom: 2px solid #444;
-            margin-bottom: 20px;
-        }
-
-        .gallery p {
-            font-size: 18px;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-        }
-
         footer {
             margin-top: 30px;
             text-align: center;
@@ -140,6 +155,23 @@
     <div class="container">
         <header>
             <h1>林墨瀚的个人风采展示</h1>
+
+            <!-- 图片轮播 -->
+            <div class="carousel">
+                <!-- 图片轮播容器 -->
+                <div class="carousel-images">
+                    <!-- 每张轮播图片 -->
+                    <img src="https://i-blog.csdnimg.cn/direct/8ef5e5079d954090b6cc91ca64174223.jpeg">
+                    <img src="https://i-blog.csdnimg.cn/direct/b692d6b891014a66861974c51d1b6393.jpeg">
+                    <img src="https://i-blog.csdnimg.cn/direct/811e1769bb2e47dfb058b2056dd37a1e.jpeg">
+                    <img src="https://i-blog.csdnimg.cn/direct/bf17571f936b4f3683e05ee9068e49aa.jpeg">
+                </div>
+                <!-- 图片轮播控制按钮 -->
+                <div class="carousel-controls">
+                    <button id="prev">‹</button>
+                    <button id="next">›</button>
+                </div>
+            </div>
         </header>
 
         <section>
@@ -154,8 +186,8 @@
                     <li>熟练使用Windows、Linux系统</li>
                     <li>掌握Python，学习C++</li>
                     <li>日常英语听力与语法学习</li>
+                    <p>此外，我还计划通过不断学习和实践，进一步提升技能，关注技术领域的前沿动态。</p>
                 </ul>
-                <p>此外，我还计划通过不断学习和实践，进一步提升技能，关注技术领域的前沿动态。</p>
             </div>
             <div class="box">
                 <h3>未来理想</h3>
@@ -167,19 +199,51 @@
                 <p>我立志成为一名计算机领域的专家，未来希望能够加入EMC或IBM，为科技发展贡献力量。我的目标是不断学习新技术，并在行业中发挥积极作用。</p>
             </div>
         </div>
-
         <div class="mid">
             <h2>观影集</h2>
             <p>我爱看电影，累计观影量超200部。</p>
-            <img src="https://i-blog.csdnimg.cn/direct/5de06c6064fd44019e32fa187d84d692.jpeg">
-            <img src="https://i-blog.csdnimg.cn/direct/1f80e26930854bbe98cdf16c2adcd2a6.jpeg">
-            <img src="https://i-blog.csdnimg.cn/direct/bcd00cdddfda483d859107fbebc821ef.jpeg">
-            <img src="https://i-blog.csdnimg.cn/direct/9045323f5395409891601633da9491d2.jpeg">
+            <img src="https://i-blog.csdnimg.cn/direct/c5aa668a3038420680ee1020380a33d1.bmp" height="288" width="195">
+            <img src="https://i-blog.csdnimg.cn/direct/c00634ff683049779e06a2ba841ee9d5.bmp" height="288" width="195">
+            <img src="https://i-blog.csdnimg.cn/direct/427e9c13b98840258c235b8fccd299ac.bmp" height="288" width="195">
+            <img src="https://i-blog.csdnimg.cn/direct/63284850441b431ba1defea5dc94cbd3.bmp" height="288" width="195">
+            <meta name="referrer" content="no-referrer">
         </div>
 
         <footer>
             <p>感谢阅读我的个人展示！</p>
         </footer>
     </div>
+
+    <script>
+        // JavaScript 代码处理图片轮播
+        const prevButton = document.getElementById('prev');
+        const nextButton = document.getElementById('next');
+        const carouselImages = document.querySelector('.carousel-images');
+        const images = document.querySelectorAll('.carousel-images img');
+        let index = 0;
+
+        // 显示当前图片
+        function showImage() {
+            const offset = -index * 100; // 图片宽度为100%
+            carouselImages.style.transform = `translateX(${offset}%)`;
+        }
+
+        // 上一张图片
+        prevButton.addEventListener('click', () => {
+            index = (index > 0) ? index - 1 : images.length - 1;
+            showImage();
+        });
+
+        // 下一张图片
+        nextButton.addEventListener('click', () => {
+            index = (index < images.length - 1) ? index + 1 : 0;
+            showImage();
+        });
+
+        // 自动播放
+        setInterval(() => {
+            nextButton.click();
+        }, 3000); // 每3秒切换一次图片
+    </script>
 </body>
 </html>
