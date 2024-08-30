@@ -25,11 +25,13 @@
         header {
             text-align: center;
             padding: 10px;
+            border-bottom: 2px solid #ddd;
         }
 
         header h1 {
             font-size: 36px;
             color: #333;
+            margin: 0;
             letter-spacing: 2px;
         }
 
@@ -82,11 +84,13 @@
             background-color: #fafafa;
             position: relative;
             overflow: hidden;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         .skills .box h3 {
             font-size: 20px;
             margin-bottom: 10px;
+            color: #333;
         }
 
         .skills .box ul {
@@ -103,6 +107,11 @@
             font-size: 16px;
             color: #555;
             display: none;
+        }
+
+        .skills .box:hover {
+            background-color: #e0f7fa;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
         }
 
         .skills .box:hover p {
@@ -124,7 +133,7 @@
         </header>
         
         <div class="photo">
-            <img src="your-photo.jpg" alt="林墨瀚照片">
+            <img src="https://i-blog.csdnimg.cn/direct/4dd112061c3d4fe1ad70b6aa5ec47dbe.jpeg" alt="林墨瀚照片">
         </div>
 
         <section>
