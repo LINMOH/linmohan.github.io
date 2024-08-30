@@ -35,25 +35,8 @@
             letter-spacing: 2px;
         }
 
-        .photo {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid #666;
-        }
-
-        .photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
         section {
-            margin-top: 160px;
+            margin-top: 40px; /* 增加标题与正文部分的间距 */
             padding: 0 20px;
         }
 
@@ -61,7 +44,7 @@
             font-size: 24px;
             color: #444;
             border-bottom: 2px solid #444;
-            margin-bottom: 10px;
+            margin-bottom: 40px; /* 增加标题底部的间距 */
         }
 
         section p {
@@ -73,7 +56,7 @@
         .skills {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
+            margin-top: 30px; /* 增加技能部分的上边距 */
         }
 
         .skills .box {
@@ -118,6 +101,33 @@
             display: block;
         }
 
+        .gallery {
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        .gallery h2 {
+            font-size: 24px;
+            color: #444;
+            border-bottom: 2px solid #444;
+            margin-bottom: 20px;
+        }
+
+        .gallery p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
         footer {
             margin-top: 30px;
             text-align: center;
@@ -131,10 +141,6 @@
         <header>
             <h1>林墨瀚的个人风采展示</h1>
         </header>
-        
-        <div class="photo">
-            <img src="https://i-blog.csdnimg.cn/direct/4dd112061c3d4fe1ad70b6aa5ec47dbe.jpeg" alt="林墨瀚照片">
-        </div>
 
         <section>
             <h2>个人简介</h2>
@@ -153,13 +159,22 @@
             </div>
             <div class="box">
                 <h3>未来理想</h3>
-                <ui>
-                    <li>高考考上211</li>
+                <ul>
+                    <li>高考能考上211</li>
                     <li>雅思6分</li>
                     <li>入职EMC或IBM</li>
-                </ui>
+                </ul>
                 <p>我立志成为一名计算机领域的专家，未来希望能够加入EMC或IBM，为科技发展贡献力量。我的目标是不断学习新技术，并在行业中发挥积极作用。</p>
             </div>
+        </div>
+
+        <div class="mid">
+            <h2>观影集</h2>
+            <p>我爱看电影，累计观影量超200部。</p>
+            <img src="https://img9.doubanio.com/view/photo/raw/public/p2559579036.jpg">
+            <img src="https://img3.doubanio.com/view/photo/raw/public/p1663639252.jpg">
+            <img src="https://img9.doubanio.com/view/photo/raw/public/p2687443734.jpg">
+            <img src="https://img1.doubanio.com/view/photo/raw/public/p501177648.jpg">
         </div>
 
         <footer>
