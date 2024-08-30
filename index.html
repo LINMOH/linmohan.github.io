@@ -14,7 +14,7 @@
 
         .container {
             width: 210mm;
-            height: 500mm;
+            height: 270mm;
             margin: auto;
             background-color: white;
             padding: 20px;
@@ -156,24 +156,6 @@
         <header>
             <h1>林墨瀚的个人风采展示</h1>
 
-            <!-- 图片轮播 -->
-            <div class="carousel">
-                <!-- 图片轮播容器 -->
-                <div class="carousel-images">
-                    <!-- 每张轮播图片 -->
-                    <img src="https://i-blog.csdnimg.cn/direct/8ef5e5079d954090b6cc91ca64174223.jpeg">
-                    <img src="https://i-blog.csdnimg.cn/direct/b692d6b891014a66861974c51d1b6393.jpeg">
-                    <img src="https://i-blog.csdnimg.cn/direct/811e1769bb2e47dfb058b2056dd37a1e.jpeg">
-                    <img src="https://i-blog.csdnimg.cn/direct/bf17571f936b4f3683e05ee9068e49aa.jpeg">
-                </div>
-                <!-- 图片轮播控制按钮 -->
-                <div class="carousel-controls">
-                    <button id="prev">‹</button>
-                    <button id="next">›</button>
-                </div>
-            </div>
-        </header>
-
         <section>
             <h2>个人简介</h2>
             <p>我是林墨瀚，一名内向型的INTJ人格类型者，喜欢独立思考和解决复杂问题。我的兴趣广泛，尤其热衷于英语和计算机编程。我阅读了多本语法书籍，每天听英语博客，并在Python和C++编程中不断探索。</p>
@@ -202,10 +184,10 @@
         <div class="mid">
             <h2>观影集</h2>
             <p>我爱看电影，累计观影量超200部。</p>
-            <img src="https://i-blog.csdnimg.cn/direct/c5aa668a3038420680ee1020380a33d1.bmp" height="288" width="195">
-            <img src="https://i-blog.csdnimg.cn/direct/c00634ff683049779e06a2ba841ee9d5.bmp" height="288" width="195">
-            <img src="https://i-blog.csdnimg.cn/direct/427e9c13b98840258c235b8fccd299ac.bmp" height="288" width="195">
-            <img src="https://i-blog.csdnimg.cn/direct/63284850441b431ba1defea5dc94cbd3.bmp" height="288" width="195">
+            <img src="https://i-blog.csdnimg.cn/direct/c5aa668a3038420680ee1020380a33d1.bmp" height="288" width="190">
+            <img src="https://i-blog.csdnimg.cn/direct/c00634ff683049779e06a2ba841ee9d5.bmp" height="288" width="190">
+            <img src="https://i-blog.csdnimg.cn/direct/427e9c13b98840258c235b8fccd299ac.bmp" height="288" width="190">
+            <img src="https://i-blog.csdnimg.cn/direct/63284850441b431ba1defea5dc94cbd3.bmp" height="288" width="190">
             <meta name="referrer" content="no-referrer">
         </div>
 
@@ -214,36 +196,5 @@
         </footer>
     </div>
 
-    <script>
-        // JavaScript 代码处理图片轮播
-        const prevButton = document.getElementById('prev');
-        const nextButton = document.getElementById('next');
-        const carouselImages = document.querySelector('.carousel-images');
-        const images = document.querySelectorAll('.carousel-images img');
-        let index = 0;
-
-        // 显示当前图片
-        function showImage() {
-            const offset = -index * 100; // 图片宽度为100%
-            carouselImages.style.transform = `translateX(${offset}%)`;
-        }
-
-        // 上一张图片
-        prevButton.addEventListener('click', () => {
-            index = (index > 0) ? index - 1 : images.length - 1;
-            showImage();
-        });
-
-        // 下一张图片
-        nextButton.addEventListener('click', () => {
-            index = (index < images.length - 1) ? index + 1 : 0;
-            showImage();
-        });
-
-        // 自动播放
-        setInterval(() => {
-            nextButton.click();
-        }, 3000); // 每3秒切换一次图片
-    </script>
 </body>
 </html>
