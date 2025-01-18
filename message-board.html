@@ -129,15 +129,15 @@
             document.getElementById('message').value = '';
 
             // 触发 GitHub Actions 工作流
-            fetch('https://api.github.com/repos/LINMOH/LINMOH.github.io/actions/workflows/message-submit.yml/dispatches', {
+            fetch('https://api.github.com/repos/LINMOH/LINMOH.github.io/dispatches', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer YOUR_PERSONAL_ACCESS_TOKEN`,  // 替换为你自己的 GitHub Personal Access Token
+                    'Authorization': `Bearer ${process.env.GITHUB_TOKEN}`,  // 使用 GitHub Actions Token
                 },
                 body: JSON.stringify({
-                    ref: 'main',
-                    inputs: {
+                    event_type: 'new-message',  // 设置自定义事件类型
+                    client_payload: {
                         name: name,
                         message: message
                     }
