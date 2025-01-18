@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>请我喝杯咖啡</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .qr-code {
+            margin: 20px 0;
+            width: 240px; /* 设置宽度 */
+            height: 320px; /* 设置高度，保持3:4的比例 */
+        }
+
+        .message {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        img {
+            width: 100%; /* 使图片填充整个容器 */
+            height: 100%; /* 保持图片的宽高比例 */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div>
+        <!-- 标题 -->
+        <h1>请我喝杯咖啡☕</h1>
+
+        <!-- 收款二维码 -->
+        <div class="qr-code">
+            <img src="https://pic1.imgdb.cn/item/678ba1f1d0e0a243d4f57a95.jpg" alt="收款二维码">
+        </div>
+
+        <!-- 感谢信息 -->
+        <div class="message">
+            <p>谢谢您的支持</p>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>林墨瀚的个人风采展示</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 210mm;
+            height: 280mm;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        header h1 {
+            font-size: 36px;
+            color: #333;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+
+        section {
+            margin-top: 60px; /* 增加标题与正文部分的间距 */
+            padding: 0 20px;
+        }
+
+        section h2 {
+            font-size: 24px;
+            color: #444;
+            border-bottom: 2px solid #444;
+            margin-bottom: 40px; /* 增加标题底部的间距 */
+        }
+
+        section p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .skills {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px; /* 增加技能部分的上边距 */
+        }
+
+        .skills .box {
+            width: 48%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            background-color: #fafafa;
+            position: relative;
+            overflow: hidden;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .skills .box h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .skills .box ul {
+            list-style-type: square;
+            padding-left: 20px;
+        }
+
+        .skills .box ul li {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .skills .box p {
+            font-size: 16px;
+            color: #555;
+            display: none;
+        }
+
+        .skills .box:hover {
+            background-color: #e0f7fa;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .skills .box:hover p {
+            display: block;
+        }
+
+        .gallery {
+            margin-top: 30px;
+            padding: 0 20px;
+        }
+
+        .gallery h2 {
+            font-size: 24px;
+            color: #444;
+            border-bottom: 2px solid #444;
+            margin-bottom: 20px;
+        }
+
+        .gallery p {
+            font-size: 18px;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>林墨瀚的个人风采展示</h1>
+        </header>
+
+        <section>
+            <h2>个人简介</h2>
+            <p>我是林墨瀚，一名内向型的INTJ人格类型者，喜欢独立思考和解决复杂问题。我的兴趣广泛，尤其热衷于英语和计算机编程。我阅读了多本语法书籍，每天听英语博客，并在Python和C++编程中不断探索。</p>
+        </section>
+
+        <div class="skills">
+            <div class="box">
+                <h3>个人技能</h3>
+                <ul>
+                    <li>熟练使用Windows、Linux系统</li>
+                    <li>掌握Python，学习C++</li>
+                    <li>日常英语听力与语法学习</li>
+                    <li>(ง •̀_•́)ง‼ 点我~</li>
+                </ul>
+                <p>此外，我还计划通过不断学习和实践，进一步提升技能，关注技术领域的前沿动态。</p>
+            </div>
+            <div class="box">
+                <h3>未来理想</h3>
+                <ul>
+                    <li>高考能考上211</li>
+                    <li>雅思6分</li>
+                    <li>入职EMC或IBM</li>
+                </ul>
+                <p>我立志成为一名计算机领域的专家，未来希望能够加入EMC或IBM，为科技发展贡献力量。我的目标是不断学习新技术，并在行业中发挥积极作用。</p>
+            </div>
+        </div>
+
+        <div class="mid">
+            <h2>观影集</h2>
+            <p>我爱看电影，累计观影量超200部。</p>
+            <img src="https://pic.imgdb.cn/item/66d17109d9c307b7e9691537.jpg" height="288" width="195">
+            <img src="https://pic.imgdb.cn/item/66d17109d9c307b7e96914ca.jpg" height="288" width="195">
+            <img src="https://pic.imgdb.cn/item/66d17108d9c307b7e9691414.jpg" height="288" width="195">
+            <img src="https://pic.imgdb.cn/item/66d17107d9c307b7e96912f8.jpg" height="288" width="195">
+            <meta name="referrer" content="no-referrer">
+        </div>
+
+        <footer>
+            <p>感谢阅读我的个人展示！</p>
+            <p>2024/8/30 版本1.21</p>
+        </footer>
+    </div>
+</body>
+</html>
