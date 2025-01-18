@@ -1,47 +1,28 @@
-name: Submit Message
+name: Handle New Message
 
 on:
-  workflow_dispatch:
-    inputs:
-      name:
-        description: 'Name of the user'
-        required: false
-        default: 'Anonymous'
-      message:
-        description: 'Message content'
-        required: true
+  repository_dispatch:
+    types: [new-message]
 
 jobs:
-  submit_message:
+  update_message_file:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Update messages.json
-        run: |
-          # Create a JSON object from the inputs
-          MESSAGE_JSON=$(jq -n \
-            --arg name "${{ github.event.inputs.name }}" \
-            --arg message "${{ github.event.inputs.message }}" \
-            --arg timestamp "$(date --utc +%Y-%m-%dT%H:%M:%SZ)" \
-            '{name: $name, message: $message, timestamp: $timestamp}')
-          
-          # Read the current messages.json
-          CURRENT_MESSAGES=$(curl -s https://raw.githubusercontent.com/LINMOH/LINMOH.github.io/main/messages.json)
-
-          # Append the new message to the existing messages
-          UPDATED_MESSAGES=$(echo $CURRENT_MESSAGES | jq ". += [$MESSAGE_JSON]")
-
-          # Save the updated JSON to the file
-          echo $UPDATED_MESSAGES | jq . > messages.json
-
-      - name: Commit and push changes
-        uses: EndBug/add-and-commit@v7
-        with:
-          author_name: "GitHub Actions"
-          author_email: "actions@github.com"
-          message: "Add new message"
-          add: "messages.json"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Append message to messages.json
+      run: |
+        echo "Appending new message to messages.json"
+        echo "[{
+          \"name\": \"${{ github.event.client_payload.name }}\",
+          \"message\": \"${{ github.event.client_payload.message }}\"
+        }]" >> messages.json
+        git config --global user.name "github-actions"
+        git config --global user.email "github-actions@github.com"
+        git add messages.json
+        git commit -m "Add new message"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
