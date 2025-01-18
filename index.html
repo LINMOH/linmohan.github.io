@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm 林墨瀚!</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            cursor: pointer;
+            flex-direction: column;
+            position: relative; /* 让小字可以相对于父元素定位 */
+        }
+
+        h2 {
+            color: #222;
+            font-size: 100px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        h2 a {
+            text-decoration: none;
+            color: white;
+        }
+
+        h2 span {
+            transition: 0.5s;
+        }
+
+        h2:hover span:nth-child(1) {
+            margin-right: 10px;
+        }
+
+        h2:hover span:nth-child(2) {
+            margin-left: 30px;
+        }
+
+        h2 span:nth-child(1)::after {
+            opacity: 0;
+            transition: 2s;
+        }
+
+        h2:hover span:nth-child(1)::after {
+            content: "'";
+            opacity: 1;
+        }
+
+        h2:hover span {
+            color: white;
+            text-shadow: 0 0 10px #fff,
+                0 0 20px #fff,
+                0 0 40px #fff,
+                0 0 80px #fff;
+        }
+
+        .small-text {
+            position: absolute;
+            bottom: 20px; /* 距离底部 20px */
+            right: 20px; /* 距离左边 20px */
+            font-size: 18px;
+            color: #fff;
+            animation: breathing 1.5s infinite ease-in-out;
+        }
+
+        @keyframes breathing {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2><span>I</span>m<span> 林墨瀚!</span></h2>
+
+    <div class="small-text">点击进入个人风采介绍</div>
+
+    <script>
+        // 添加单击事件监听器，点击时跳转到 main.html
+        document.body.addEventListener('click', function () {
+            window.location.href = 'main.html'; // 跳转到 main.html
+        });
+    </script>
+
+</body>
+
+</html>
