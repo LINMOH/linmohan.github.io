@@ -1,28 +1,29 @@
-name: Handle New Message
+name: Submit Message to GitHub Pages
 
 on:
-  repository_dispatch:
-    types: [new-message]
+  push:
+    branches:
+      - main  # 或你用的默认分支名
 
 jobs:
-  update_message_file:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-    - name: Append message to messages.json
-      run: |
-        echo "Appending new message to messages.json"
-        echo "[{
-          \"name\": \"${{ github.event.client_payload.name }}\",
-          \"message\": \"${{ github.event.client_payload.message }}\"
-        }]" >> messages.json
-        git config --global user.name "github-actions"
-        git config --global user.email "github-actions@github.com"
-        git add messages.json
-        git commit -m "Add new message"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run the script to update messages
+        run: |
+          echo "Updating messages..."
+          curl -X POST -d @message.json \
+          -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          "https://api.github.com/repos/LINMOH/LINMOH.github.io/contents/messages.json"
