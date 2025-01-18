@@ -10,6 +10,7 @@
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
@@ -21,6 +22,8 @@
             cursor: pointer;
             flex-direction: column;
             position: relative;
+            padding: 20px;
+            overflow-x: hidden;
         }
 
         h2 {
@@ -28,6 +31,7 @@
             font-size: 100px;
             font-weight: bold;
             text-align: center;
+            transition: color 0.5s, text-shadow 0.5s;
         }
 
         h2 a {
@@ -44,27 +48,56 @@
             display: block;
         }
 
-        h2:hover span:nth-child(1) {
-            margin-right: 10px;
+        /* 修改卡片背景颜色为灰色 #778899 */
+        .card {
+            background-color: #778899; /* 设为灰色 */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 300px;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            opacity: 0.5; /* 初始状态暗一点 */
+            transition: opacity 0.5s ease;
         }
 
-        h2:hover span:nth-child(2) {
-            margin-left: 30px;
-        }
-
-        h2 span:nth-child(1)::after {
-            opacity: 0;
-            transition: 2s;
-        }
-
-        h2:hover span:nth-child(1)::after {
-            content: "'";
-            opacity: 1;
-        }
-
-        h2:hover span {
+        .card .blue-button, .card .red-button, .card .green-button {
             color: white;
-            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 10px; /* 增加间隔 */
+        }
+
+        .card .blue-button {
+            background-color: #6c757d; /* 灰色 */
+        }
+
+        .card .blue-button:hover {
+            background-color: #5a6268; /* 深灰色 */
+        }
+
+        .card .red-button {
+            background-color: #dc3545; /* 红色 */
+        }
+
+        .card .red-button:hover {
+            background-color: #c82333; /* 深红色 */
+        }
+
+        .card .green-button {
+            background-color: #28a745; /* 绿色 */
+        }
+
+        .card .green-button:hover {
+            background-color: #218838; /* 深绿色 */
         }
 
         /* 小字样式 */
@@ -91,49 +124,16 @@
             }
         }
 
-        /* 圆形按钮样式 */
-        .circle-button {
-            position: absolute;
-            top: 70px; /* 调整位置 */
-            left: 10px;
-            width: 50px;
-            height: 50px;
-            background-image: url('https://pic1.imgdb.cn/item/678ba199d0e0a243d4f57a8c.png');
-            background-size: cover;
-            border-radius: 50%;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .circle-button:hover {
-            opacity: 0.8;
-        }
-
-        /* 蓝色按钮样式 */
-        .blue-button {
-            position: absolute;
-            top: 10px; /* 放置在圆形按钮上方 */
-            left: 10px;
-            width: 100px;
-            height: 40px;
-            background-color: #007bff; /* 蓝色 */
-            border: none;
-            border-radius: 20px; /* 圆角 */
+        /* 变亮效果 */
+        h2:hover span {
             color: white;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff;
         }
 
-        .blue-button:hover {
-            background-color: #0056b3; /* 悬停时颜色变化 */
+        h2:hover {
+            color: white;
         }
+
     </style>
 </head>
 
@@ -143,18 +143,45 @@
 
     <div class="small-text">点击进入个人风采介绍</div>
 
-    <!-- 蓝色按钮，点击后跳转到 old.html -->
-    <button class="blue-button" onclick="window.location.href='old.html'; event.stopPropagation();">
-        旧页面
-    </button>
+    <!-- 旧页面卡片，固定在页面底部 -->
+    <div class="card" id="card">
+        <!-- 留言板按钮 -->
+        <button class="red-button" onclick="window.location.href='message-board.html'; event.stopPropagation();">
+            留言板
+        </button>
 
-    <!-- 圆形按钮，点击后跳转到 pay.html -->
-    <button class="circle-button" onclick="window.location.href='pay.html'; event.stopPropagation();"></button>
+        <!-- 赞助按钮 -->
+        <button class="green-button" onclick="window.location.href='pay.html'; event.stopPropagation();">
+            赞助
+        </button>
+
+        <!-- 旧版本按钮 -->
+        <button class="blue-button" onclick="window.location.href='old.html'; event.stopPropagation();">
+            旧版本
+        </button>
+    </div>
 
     <script>
-        // 添加单击事件监听器，点击时跳转到 main.html
-        document.body.addEventListener('click', function () {
-            window.location.href = 'main.html'; // 跳转到 main.html
+        // 获取标题和卡片元素
+        const title = document.querySelector('h2');
+        const card = document.getElementById('card');
+
+        // 监听标题的 hover 事件，改变卡片的透明度
+        title.addEventListener('mouseover', () => {
+            card.style.opacity = 1;  // 当标题变亮时，卡片也变亮
+        });
+
+        title.addEventListener('mouseleave', () => {
+            card.style.opacity = 0.5;  // 当标题恢复正常时，卡片恢复暗
+        });
+
+        // 监听卡片的 hover 事件，改变卡片的透明度
+        card.addEventListener('mouseover', () => {
+            card.style.opacity = 1;  // 当鼠标移入卡片时，卡片变亮
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.opacity = 0.5;  // 当鼠标离开卡片时，卡片恢复暗
         });
     </script>
 
