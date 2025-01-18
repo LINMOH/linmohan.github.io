@@ -127,6 +127,32 @@
             // 清空输入框
             document.getElementById('name').value = '';
             document.getElementById('message').value = '';
+
+            // 触发 GitHub Actions 工作流
+            fetch('https://api.github.com/repos/LINMOH/LINMOH.github.io/actions/workflows/message-submit.yml/dispatches', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer YOUR_PERSONAL_ACCESS_TOKEN`,  // 替换为你自己的 GitHub Personal Access Token
+                },
+                body: JSON.stringify({
+                    ref: 'main',
+                    inputs: {
+                        name: name,
+                        message: message
+                    }
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Message submitted successfully');
+                } else {
+                    console.error('Failed to submit message');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         });
     </script>
 </body>
