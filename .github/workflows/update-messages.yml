@@ -1,42 +1,47 @@
-name: Update Messages
+name: Submit Message
 
 on:
-  issues:
-    types: [opened]
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'Name of the user'
+        required: false
+        default: 'Anonymous'
+      message:
+        description: 'Message content'
+        required: true
 
 jobs:
-  update-json:
+  submit_message:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Get issue details
-      id: issue
-      run: |
-        echo "MESSAGE=$(echo '${{ github.event.issue.body }}' | jq -r @json)" >> $GITHUB_ENV
-        echo "NAME=$(echo '${{ github.event.issue.title }}' | cut -d' ' -f4-)" >> $GITHUB_ENV
+      - name: Update messages.json
+        run: |
+          # Create a JSON object from the inputs
+          MESSAGE_JSON=$(jq -n \
+            --arg name "${{ github.event.inputs.name }}" \
+            --arg message "${{ github.event.inputs.message }}" \
+            --arg timestamp "$(date --utc +%Y-%m-%dT%H:%M:%SZ)" \
+            '{name: $name, message: $message, timestamp: $timestamp}')
+          
+          # Read the current messages.json
+          CURRENT_MESSAGES=$(curl -s https://raw.githubusercontent.com/LINMOH/LINMOH.github.io/main/messages.json)
 
-    - name: Read existing messages from messages.json
-      run: |
-        if [[ -f messages.json ]]; then
-          cat messages.json
-        else
-          echo '{"messages": []}' > messages.json
-        fi
+          # Append the new message to the existing messages
+          UPDATED_MESSAGES=$(echo $CURRENT_MESSAGES | jq ". += [$MESSAGE_JSON]")
 
-    - name: Add new message to messages.json
-      run: |
-        jq --arg name "$NAME" --arg message "$MESSAGE" \
-          '.messages += [{"name": $name, "message": $message}]' messages.json > temp.json && mv temp.json messages.json
+          # Save the updated JSON to the file
+          echo $UPDATED_MESSAGES | jq . > messages.json
 
-    - name: Commit and push updated messages.json
-      run: |
-        git config user.name "GitHub Actions"
-        git config user.email "actions@github.com"
-        git add messages.json
-        git commit -m "Update messages.json"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: "GitHub Actions"
+          author_email: "actions@github.com"
+          message: "Add new message"
+          add: "messages.json"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
