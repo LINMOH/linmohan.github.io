@@ -1,0 +1,42 @@
+name: Update Messages
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Get issue details
+      id: issue
+      run: |
+        echo "MESSAGE=$(echo '${{ github.event.issue.body }}' | jq -r @json)" >> $GITHUB_ENV
+        echo "NAME=$(echo '${{ github.event.issue.title }}' | cut -d' ' -f4-)" >> $GITHUB_ENV
+
+    - name: Read existing messages from messages.json
+      run: |
+        if [[ -f messages.json ]]; then
+          cat messages.json
+        else
+          echo '{"messages": []}' > messages.json
+        fi
+
+    - name: Add new message to messages.json
+      run: |
+        jq --arg name "$NAME" --arg message "$MESSAGE" \
+          '.messages += [{"name": $name, "message": $message}]' messages.json > temp.json && mv temp.json messages.json
+
+    - name: Commit and push updated messages.json
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+        git add messages.json
+        git commit -m "Update messages.json"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
