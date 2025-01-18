@@ -20,7 +20,7 @@
             background-color: black;
             cursor: pointer;
             flex-direction: column;
-            position: relative; /* 让小字可以相对于父元素定位 */
+            position: relative;
         }
 
         h2 {
@@ -37,6 +37,11 @@
 
         h2 span {
             transition: 0.5s;
+            display: inline;
+        }
+
+        h2 span.break {
+            display: block;
         }
 
         h2:hover span:nth-child(1) {
@@ -59,16 +64,14 @@
 
         h2:hover span {
             color: white;
-            text-shadow: 0 0 10px #fff,
-                0 0 20px #fff,
-                0 0 40px #fff,
-                0 0 80px #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff, 0 0 80px #fff;
         }
 
+        /* 小字样式 */
         .small-text {
             position: absolute;
-            bottom: 20px; /* 距离底部 20px */
-            right: 20px; /* 距离左边 20px */
+            bottom: 20px;
+            right: 20px;
             font-size: 18px;
             color: #fff;
             animation: breathing 1.5s infinite ease-in-out;
@@ -87,14 +90,66 @@
                 opacity: 0.5;
             }
         }
+
+        /* 圆形按钮样式 */
+        .circle-button {
+            position: absolute;
+            top: 70px; /* 调整位置 */
+            left: 10px;
+            width: 50px;
+            height: 50px;
+            background-image: url('https://pic1.imgdb.cn/item/678ba199d0e0a243d4f57a8c.png');
+            background-size: cover;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circle-button:hover {
+            opacity: 0.8;
+        }
+
+        /* 蓝色按钮样式 */
+        .blue-button {
+            position: absolute;
+            top: 10px; /* 放置在圆形按钮上方 */
+            left: 10px;
+            width: 100px;
+            height: 40px;
+            background-color: #007bff; /* 蓝色 */
+            border: none;
+            border-radius: 20px; /* 圆角 */
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .blue-button:hover {
+            background-color: #0056b3; /* 悬停时颜色变化 */
+        }
     </style>
 </head>
 
 <body>
 
-    <h2><span>I</span>m<span> 林墨瀚!</span></h2>
+    <h2><span>I</span><span>m</span> <span class="break">林墨瀚!</span></h2>
 
     <div class="small-text">点击进入个人风采介绍</div>
+
+    <!-- 蓝色按钮，点击后跳转到 old.html -->
+    <button class="blue-button" onclick="window.location.href='old.html'; event.stopPropagation();">
+        旧页面
+    </button>
+
+    <!-- 圆形按钮，点击后跳转到 pay.html -->
+    <button class="circle-button" onclick="window.location.href='pay.html'; event.stopPropagation();"></button>
 
     <script>
         // 添加单击事件监听器，点击时跳转到 main.html
