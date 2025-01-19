@@ -150,7 +150,8 @@
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
-                const messages = await response.json();
+                const text = await response.text();
+                const messages = text ? JSON.parse(text) : [];
 
                 messagesContainer.innerHTML = '';
                 messages.forEach(msg => {
