@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 
 <head>
     <meta charset="UTF-8">
@@ -8,8 +8,8 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #2d2d2d; /* 深色背景 */
-            color: #fff; /* 白色文字 */
+            background-color: #2d2d2d;
+            color: #fff;
             margin: 0;
             padding: 0;
             display: flex;
@@ -19,41 +19,40 @@
         }
 
         .container {
-            background-color: #3a3a3a; /* 深灰色背景 */
+            background-color: #3a3a3a;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             width: 400px;
             max-width: 100%;
-            box-sizing: border-box; /* 确保容器不超出边界 */
+            box-sizing: border-box;
         }
 
         h1 {
             text-align: center;
             margin-bottom: 20px;
-            color: #fff; /* 白色文字 */
         }
 
         input, textarea {
-            width: 100%; /* 让输入框占满容器宽度 */
+            width: 100%;
             padding: 10px;
             font-size: 16px;
             border-radius: 5px;
-            border: 1px solid #444; /* 深色边框 */
-            background-color: #555; /* 深灰色输入框背景 */
-            color: #fff; /* 白色文字 */
+            border: 1px solid #444;
+            background-color: #555;
+            color: #fff;
             margin-bottom: 10px;
-            box-sizing: border-box; /* 确保输入框包含边框和内边距 */
+            box-sizing: border-box;
         }
 
         input::placeholder, textarea::placeholder {
-            color: #bbb; /* 浅灰色占位符 */
+            color: #bbb;
         }
 
         button {
             width: 100%;
             padding: 10px;
-            background-color: #007bff; /* 蓝色按钮 */
+            background-color: #007bff;
             color: white;
             border: none;
             border-radius: 5px;
@@ -62,7 +61,7 @@
         }
 
         button:hover {
-            background-color: #0056b3; /* 悬停时颜色变化 */
+            background-color: #0056b3;
         }
 
         .messages {
@@ -71,8 +70,8 @@
 
         .message {
             padding: 10px;
-            border-bottom: 1px solid #444; /* 深色边框 */
-            background-color: #4c4c4c; /* 深灰色留言背景 */
+            border-bottom: 1px solid #444;
+            background-color: #4c4c4c;
             border-radius: 5px;
             margin-bottom: 10px;
         }
@@ -80,7 +79,6 @@
         .message p {
             margin: 0;
         }
-
     </style>
 </head>
 
@@ -114,32 +112,29 @@
                 return;
             }
 
-            // 使用 GitHub API 触发 GitHub Actions
-            const token = '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'; // 你的 GitHub Personal Access Token
-            const repo = 'LINMOH/LINMOH.github.io'; // 你的仓库名
-            const workflow_id = 'saveMessage.yml'; // 工作流文件名
-
-            const response = await fetch(`https://api.github.com/repos/${repo}/actions/workflows/${workflow_id}/dispatches`, {
-                method: 'POST',
-                headers: {
-                    'Authorization': `token ${token}`,
-                    'Accept': 'application/vnd.github.v3+json',
-                },
-                body: JSON.stringify({
-                    ref: 'main',
-                    inputs: {
-                        name: name,
-                        message: message,
+            try {
+                const response = await fetch(`https://api.github.com/repos/LINMOH/LINMOH.github.io/actions/workflows/saveMessage.yml/dispatches`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `token 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`,
+                        'Accept': 'application/vnd.github.v3+json',
                     },
-                }),
-            });
+                    body: JSON.stringify({
+                        ref: 'main',
+                        inputs: { name, message },
+                    }),
+                });
 
-            if (response.ok) {
-                alert('留言已保存!');
-                // 清空输入框
-                document.getElementById('name').value = '';
-                document.getElementById('message').value = '';
-            } else {
+                if (response.ok) {
+                    alert('留言已保存!');
+                    document.getElementById('name').value = '';
+                    document.getElementById('message').value = '';
+                    fetchMessages();
+                } else {
+                    alert('保存留言时出错，请重试!');
+                }
+            } catch (error) {
+                console.error('Error:', error);
                 alert('保存留言时出错，请重试!');
             }
         });
@@ -147,12 +142,10 @@
         async function fetchMessages() {
             try {
                 const response = await fetch('https://raw.githubusercontent.com/LINMOH/LINMOH.github.io/main/messages.json');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (!response.ok) throw new Error('Network response was not ok');
                 const text = await response.text();
                 const messages = text ? JSON.parse(text) : [];
-
+                
                 messagesContainer.innerHTML = '';
                 messages.forEach(msg => {
                     const messageDiv = document.createElement('div');
