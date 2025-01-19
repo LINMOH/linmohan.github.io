@@ -102,7 +102,7 @@
             const messageForm = document.getElementById('messageForm');
             const messagesContainer = document.getElementById('messages');
 
-            const token = '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'; // 你的 GitHub Personal Access Token
+            const token = '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'; // 你的 GitHub Personal Access Token
             const owner = 'LINMOH'; // 你的 GitHub 用户名
             const repo = 'LINMOH.github.io'; // 你的 GitHub 仓库名
 
@@ -123,6 +123,7 @@
                         headers: {
                             'Authorization': `token ${token}`,
                             'Accept': 'application/vnd.github.v3+json',
+                            'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
                             title: `留言来自：${name}`,
